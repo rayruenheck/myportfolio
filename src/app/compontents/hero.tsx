@@ -6,7 +6,7 @@ import React from 'react'
 export default function Hero() {
   return (
     
-      <motion.div className='grid lg:grid-cols-4 h-[100vh]'
+      <motion.div className='grid lg:grid-cols-4 h-[100vh] mb-[300px] md:mb-0'
         whileInView={{
           opacity: 1,
           scale: 1,

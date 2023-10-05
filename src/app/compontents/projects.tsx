@@ -17,7 +17,7 @@ export default function projects() {
       }]
   return (
       
-       <div id='projects' className='h-[100vh] flex flex-col justify-center items-center '>
+       <div id='projects' className='mb-[300px] md:mb-0 h-[100vh] flex flex-col justify-center items-center '>
         
         <motion.div className='w-full h-full flex flex-col justify-center items-center'
         whileInView={{
@@ -32,7 +32,7 @@ export default function projects() {
           duration: .5,
         }}
       >
-        <h1 className='text-7xl font-mono'>Projects</h1>
+        <h1 className='text-5xl md:text-7x1 font-mono'>Projects</h1>
         <div className='w-full h-full flex flex-col md:flex-row justify-center items-center'>
         <a href="https://to-do-list-nextjs-1.vercel.app/" target="_blank">
         <div className=' h-full md:h-[400px] w-[400px] border rounded shadow-md md:mr-6 flex flex-col justify-center items-center'>
