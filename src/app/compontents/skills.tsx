@@ -12,8 +12,6 @@ interface Icon {
       format: string;
     }[];
     size: number;
-    size_height: number;
-    size_width: number;
   }[];
 }
 

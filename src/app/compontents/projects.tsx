@@ -32,7 +32,7 @@ export default function projects() {
           duration: .5,
         }}
       >
-        <h1 className='text-5xl md:text-7x1 font-mono'>Projects</h1>
+        <h1 className='text-5xl md:text-7x1 font-mono mb-[100px] md:mb-0'>Projects</h1>
         <div className='w-full h-full flex flex-col md:flex-row justify-center items-center'>
         <a href="https://to-do-list-nextjs-1.vercel.app/" target="_blank">
         <div className=' h-full md:h-[400px] w-[400px] border rounded shadow-md md:mr-6 flex flex-col justify-center items-center'>

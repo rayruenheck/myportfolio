@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function Navbar() {
   
+  
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -13,16 +14,15 @@ export default function Navbar() {
   const dropdownMenu = (
     <ul className="dropdown-menu absolute top-0 w-1/2 mt-10 py-4 bg-white rounded-lg flex flex-col justify-center items-center border shadow-lg z-50">
       <a href="#about" className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100">About</a>
-      <a href="#Skills" className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100">Skills</a>
+      <a href="#skills" className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100">Skills</a>
       <a href="#projects" className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100">Projects</a>
     </ul>
   )
 
   
-
   return (
-    <header className="flex text-neutral-dark w-screen">
-      <a href="/" className="ml-12 items-center font-kaushan flex justify-start md:justify-center text-3xl w-1/2">
+    <header className="flex fixed z-10 text-neutral-dark w-screen bg-white">
+      <a href="/" className="ml-12 items-center font-kaushan flex justify-start md:justify-center text-[20px] w-1/2">
         Ray Ruenheck
       </a>
   

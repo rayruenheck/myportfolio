@@ -20,7 +20,7 @@ export default function About() {
         }}
       >
       
-      <h1 className='text-5xl md:text-7x1 md:mb-0 mb-[100px] font-mono'> About Me</h1>
+      <h1 className='text-5xl md:text-7x1 mb-[100px] font-mono'> About Me</h1>
       <div className='col-span-1 flex items-start font-mono flex-col p-4 border-2 rounded shadow-2xl lg:w-1/2 '>
       <p className='mb-4'>I am a recent graduate of Coding Temple, where I got my Certificate of Software Engineering. I am proficient in a variety of programming languages, including JavaScript, Typescript, and Python. I am also familiar with a variety of frameworks and technologies, such as Node.js, Next.js, and Flask.</p>
       <p className='mb-4'>During my time at Coding Temple, I completed several projects, including a web application for a mueseum. The project was cancelled before it was completed, but I learned a lot about front-end development and api methods.</p>
