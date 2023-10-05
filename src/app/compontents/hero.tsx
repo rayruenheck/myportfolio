@@ -25,7 +25,7 @@ export default function Hero() {
             <p className='font-mono text-lg'>Passionate Fullstack Engineer skilled in creating cohesive web solutions, combining design aesthetics with robust functionality for seamless user experiences.</p>
         </div>
         <div className='col-span-1 mx-4 flex items-center justify-center'>
-          <Image className="object-none w-48 h-48 rounded-full object-[50%_-3px]" src='/images/profile pic.jpg' alt='profile pic' width={140} height={200}></Image>
+          <Image className="object-none w-48 h-48 rounded-full object-[50%_-3px]" src='/images/profile pic.jpg' priority={true} alt='profile pic' width={140} height={200}></Image>
         </div>
         </motion.div>
         
