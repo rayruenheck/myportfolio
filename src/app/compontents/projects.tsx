@@ -1,56 +1,46 @@
 "use client"
-import React from 'react'
-
-import {motion} from 'framer-motion'
 import Image from 'next/image'
+import { ProjectCard } from './projectcard'
+import { projectcard } from '../types';
 
 
   
 
-export default function projects() {
-    const projects = [{
-        id: 1,
-        title: 'To-Do List App',
-        description: "",
+export default function Projects() {
+  
+    const projectsData: projectcard[] = [
+      {
+        title: 'To-Do List',
+        description: 'A simple To-Do List application built with Next.js. Manage your tasks efficiently.',
+        link: 'https://to-do-list-nextjs-1.vercel.app/',
         image: '/images/Screenshot 2023-09-27 100327.png',
-        url: 'https://to-do-list-nextjs-1.vercel.app/'
-      }]
-  return (
-      
-       <div id='projects' className='mb-[300px] md:mb-0 h-[100vh] flex flex-col justify-center items-center '>
-        
-        <motion.div className='w-full h-full flex flex-col justify-center items-center'
-        whileInView={{
-          opacity: 1,
-          scale: 1,
-        }}
-        initial={{
-          opacity: 0,
-          scale: 0.5,
-        }}
-        transition={{
-          duration: .5,
-        }}
-      >
-        <h1 className='text-5xl md:text-7x1 font-mono mb-[100px] md:mb-0'>Projects</h1>
+      },
+      {
+        title: 'Weather App',
+        description: 'Check the weather forecast with this Weather App. Get real-time updates and plan your day.',
+        link: 'https://week7weekendproject.vercel.app/',
+        image: '/images/Screenshot 2023-10-04 154806.png',
+      },
+      {
+        title: 'Ecommerce Website',
+        description: 'Explore a fully functional Ecommerce Website with a variety of products. Shop with ease.',
+        link: '#', // Add the link for your Ecommerce Website when available
+        image: '/images/Screenshot 2023-11-20 163232.png',
+      },
+    ];
+  
+    return (
+      <div id='projects' className='mb-[300px] md:mb-0 h-[100vh] flex flex-col justify-center items-center'>
+        <h1 className='text-5xl md:text-7xl font-mono mb-[100px] md:mb-0'>Projects</h1>
         <div className='w-full h-full flex flex-col md:flex-row justify-center items-center'>
-        <a href="https://to-do-list-nextjs-1.vercel.app/" target="_blank">
-        <div className=' h-full md:h-[400px] w-[400px] border rounded shadow-md md:mr-6 flex flex-col justify-center items-center'>
-          <Image width={600} height={600} className='h-full w-full' src="/images/Screenshot 2023-09-27 100327.png" alt="" />
-          <p>To-Do List</p>
+          {projectsData.map((project, index) => (
+            <ProjectCard key={index} {...project} />
+          ))}
         </div>
-        </a>
-        <a href="https://week7weekendproject.vercel.app/" target="_blank">
-        <div className=' h-full md:h-[400px] w-[400px] flex flex-col justify-center items-center border rounded shadow-md mt-10 md:mt-0 '>
-          <Image className='h-full w-full' src="/images/Screenshot 2023-10-04 154806.png" width={600} height={600} alt="" />
-          <p>Weather App</p>
-        </div>
-        </a>
-        </div>
-
-
-      </motion.div>
       </div>
+    );
+  }
+;
       
         
       
@@ -58,6 +48,4 @@ export default function projects() {
         
       
 
-      
-  )
-}
+   
