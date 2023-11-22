@@ -24,7 +24,7 @@ export default function Projects() {
       {
         title: 'Ecommerce Website',
         description: 'Explore a fully functional Ecommerce Website with a variety of products. Shop with ease.',
-        link: '#', // Add the link for your Ecommerce Website when available
+        link: 'https://ecommerce-nextjs-sandy.vercel.app/',
         image: '/images/Screenshot 2023-11-20 163232.png',
       },
     ];
