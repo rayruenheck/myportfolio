@@ -53,7 +53,7 @@ export default function Navbar() {
         </a>
         <a
           className="mr-4 text-neutral-500 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-          href="https://www.linkedin.com/in/raymond-ruenheck-ba907127b/"
+          href="https://www.linkedin.com/in/raymond-ruenheck/"
           target="_blank"
         >
           <span className="[&>svg]:w-5">
