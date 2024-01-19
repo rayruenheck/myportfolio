@@ -1,109 +1,30 @@
 "use client"
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-
-interface Icon {
-  icon_id: number;
-  raster_sizes: {
-    formats: {
-      preview_url: string;
-      download_url: string;
-      format: string;
-    }[];
-    size: number;
-  }[];
-}
-
-const keywords = [
-  "javascript",
-  "typescript",
-  "python",  
-  "react",
-  "nodejs",
-  "postgres",
-  "sql",
-  "nextjs",
-  "tailwindcss",
-];
-
 export default function Skills() {
-  const [icons, setIcons] = useState<Icon[]>([]);
-
-  useEffect(() => {
-    fetchIcons();
-  }, []);
-
-  const fetchIcons = async () => {
-    try {
-      const iconsData: Icon[] = [];
-
-      for (const keyword of keywords) {
-        const response = await fetch(
-          `https://iconfinder-api-auth.herokuapp.com/v4/icons/search?query=${keyword}&count=1`,
-          {
-            headers: {
-              accept: "application/json",
-              Authorization: `Bearer ${process.env.ICONFINDER_API_KEY}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch icons for ${keyword}.`);
-        }
-
-        const data = await response.json();
-        if (data.icons && data.icons.length > 0) {
-          iconsData.push(data.icons[0]);
-        }
-      }
-
-      setIcons(iconsData);
-    } catch (error) {
-      console.error("Error fetching icons:", error);
-    }
+  const skills = {
+    "Programming Languages": ['JavaScript', 'TypeScript', 'Python', 'C', 'HTML', 'CSS'],
+    "Frameworks": ['React', 'Node', 'Next.js', 'Tailwind CSS'],
+    "Cloud Infrastructure": ['AWS', 'DynamoDB', 'EC2', 'Route 53'],
+    "Certification": [{ name: 'Coding Temple Software Engineering', url: 'https://www.credly.com/badges/24502d48-ab41-4c8e-9cd7-6b01744c0a64' }],
   };
 
   return (
-    <div id='skills' className='h-[100vh] flex flex-col justify-center items-center '>
-    <motion.div  className='w-full h-full flex flex-col items-center'
-        whileInView={{
-          opacity: 1,
-          scale: 1,
-        }}
-        initial={{
-          opacity: 0,
-          scale: 0.5,
-        }}
-        transition={{
-          duration: .5,
-        }}
-      >
-      
-      <h1 className='text-5xl md:text-7x1 mb-[100px] font-mono'> Technologies</h1>
-      <div className='col-span-1 flex items-start font-mono flex-col p-4 border-2 rounded shadow-2xl lg:w-1/2 '>
-      <ul className="flex justify-between w-full h-full">
-    {icons.map((icon) => (
-      <li key={icon.icon_id}>
-        <div>
-          <img
-            src={icon.raster_sizes[5]?.formats[0]?.preview_url}
-            alt={`Icon ${icon.icon_id}`}
-            className="w-[75px] h-[75px] "
-          />
+    <div id="skills" className="technical-skills-section mb-12 p-10">
+      <h1 className="text-2xl font-bold mb-6">Technical Skills</h1>
+      {Object.entries(skills).map(([category, items], index) => (
+        <div key={index} className="mb-4">
+          <h2 className="text-xl font-semibold">{category}</h2>
+          <ul>
+            {items.map((item, idx) => (
+              <li key={idx} className="text-gray-800">
+                {typeof item === 'string' ? item : <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>}
+              </li>
+            ))}
+          </ul>
         </div>
-      </li>
-    ))}
-  </ul>
-      </div>
-    </motion.div>
+      ))}
     </div>
-    
   );
 }
-
-
 
 
 

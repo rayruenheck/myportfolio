@@ -1,47 +1,45 @@
 "use client"
 import Image from 'next/image'
-import { ProjectCard } from './projectcard'
-import { projectcard } from '../types';
 
-
-  
 
 export default function Projects() {
-  
-    const projectsData: projectcard[] = [
-      {
-        title: 'To-Do List',
-        description: 'A simple To-Do List application built with Next.js. Manage your tasks efficiently.',
-        link: 'https://to-do-list-nextjs-1.vercel.app/',
-        image: '/images/Screenshot 2023-09-27 100327.png',
-      },
-      {
-        title: 'Weather App',
-        description: 'Check the weather forecast with this Weather App. Get real-time updates and plan your day.',
-        link: 'https://week7weekendproject.vercel.app/',
-        image: '/images/Screenshot 2023-10-04 154806.png',
-      },
-      {
-        title: 'Ecommerce Website',
-        description: 'Explore a fully functional Ecommerce Website with a variety of products. Shop with ease.',
-        link: 'https://ecommerce-nextjs-sandy.vercel.app/',
-        image: '/images/Screenshot 2023-11-20 163232.png',
-      },
-    ];
-  
-    return (
-      <div id='projects' className='mb-[300px] md:mb-0 h-[100vh] flex flex-col justify-center items-center'>
-        <h1 className='text-5xl md:text-7xl font-mono mb-[100px] md:mb-0'>Projects</h1>
-        <div className='w-full h-full flex flex-col md:flex-row justify-center items-center'>
-          {projectsData.map((project, index) => (
-            <ProjectCard key={index} {...project} />
-          ))}
+  const projects = [
+    {
+      title: 'E-commerce Website',
+      description: "Technologies: Tailwind CSS, NextJS, TypeScript, Flask, PostgreSQL \nUtilized Flask to service front end requests, and handle 3rd party API integrations.\nIntegrated with the Fake Store API to provide real product details.\nLeveraged PostgreSQL to persist user details, cart information, and favorite items between sessions.\nDeveloped standard shopping cart and favorites functionality in line with existing e-commerce providers.",
+      imageUrl: '/images/Screenshot 2024-01-19 144131.png',
+      link: 'https://ecommerce-nextjs-sandy.vercel.app/', 
+    },
+    {
+      title: 'To-Do List App',
+      description: "Technologies: Tailwind CSS, NextJS, TypeScript, Flask, Cloud Hosting, DynamoDB, Route 53 \nFully featured To-Do List application with user authentication.\nLearned about deploying to AWS Cloud Infrastructure and hosting high availability services.\nImplemented CRUD operations, allowing for standardized communication between application layers.",
+      imageUrl: '/images/Screenshot 2024-01-19 133929.png',
+      link: 'https://to-do-list-nextjs-phi.vercel.app/', 
+    },
+   
+  ];
+
+  return (
+    <div id='projects' className="projects-section p-10">
+      <h1 className="text-2xl font-bold mb-6">Software Projects</h1>
+      {projects.map((project, index) => (
+        <div key={index} className="flex flex-col md:flex-row mb-8">
+          <div className="md:w-1/2 flex flex-col">
+            <h2 className="text-xl font-semibold">{project.title}</h2>
+            {project.description.split('\n').map((line, idx) => (
+              <p key={idx}>{line}</p>
+            ))}
+          </div>
+          <div className="md:w-1/2 flex justify-center items-center">
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <Image width={500} height={300} src={project.imageUrl} alt={project.title} />
+            </a>
+          </div>
         </div>
-      </div>
-    );
-  }
-;
-      
+      ))}
+    </div>
+  );
+}   
         
       
         

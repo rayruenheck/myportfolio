@@ -1,34 +1,29 @@
 "use client"
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import React from 'react'
 
 export default function Hero() {
   return (
-    
-      <motion.div className='grid lg:grid-cols-4 h-[100vh] mb-[300px] md:mb-0'
-        whileInView={{
-          opacity: 1,
-          scale: 1,
-        }}
-        initial={{
-          opacity: 0,
-          scale: 0.5,
-        }}
-        transition={{
-          duration: .5,
-        }}
-      >
-        <div></div>
-        <div className='col-span-1 flex flex-col justify-center m-6'>
-            <p className=' font-mono flex lg:text-7x1 mb-5 text-4xl'>Hi, Im Ray.</p>
-            <p className='font-mono text-lg'>Passionate Fullstack Engineer skilled in creating cohesive web solutions, combining design aesthetics with robust functionality for seamless user experiences.</p>
-        </div>
-        <div className='col-span-1 mx-4 flex items-center justify-center'>
-          <Image className="object-none w-48 h-48 rounded-full object-[50%_-3px]" src='/images/profile pic.jpg' priority={true} alt='profile pic' width={140} height={200}></Image>
-        </div>
-        </motion.div>
-        
-    
-  )
+    <div id='objective' className='flex flex-col md:flex-row w-full justify-center items-center h-[100vh] p-10'>
+      <div className='w-full md:w-1/2 flex flex-col justify-center p-6 text-center md:text-left'>
+        <p className='text-4xl lg:text-7xl mb-5 font-bold'>Hi, I'm Ray.</p>
+        <p className='text-lg'>
+        Driven individual with over five years in high-pressure customer service environments, seeking to leverage transferable
+skills in communication, problem-solving, and teamwork to transition to an entry-level role as a software developer.
+Passionate about learning and growth, I've established a foundation of full-stack skills through the Coding Temple
+bootcamp and personal projects. Eager to collaborate and apply technical skills to solve real-world business needs.
+        </p>
+      </div>
+      <div className='w-full md:w-1/2 flex items-center justify-center p-4'>
+        <Image 
+          src='/images/profile pic.jpg' 
+          alt='profile pic' 
+          width={300} 
+          height={300} 
+          className="rounded-full object-cover" 
+          priority={true} 
+        />
+      </div>
+    </div>
+  );
 }

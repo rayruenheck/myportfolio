@@ -1,9 +1,12 @@
 import { Metadata } from 'next'
 import Skills from './compontents/skills'
-import About from './compontents/about'
+
 import Projects from './compontents/projects'
 import Hero from './compontents/hero'
 import Navbar from './compontents/navbar'
+import Experience from './compontents/experience'
+import Education from './compontents/education'
+import SocialLinks from './compontents/sociallinks'
 
 
 
@@ -16,11 +19,13 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-      <Navbar/>  
+      <Navbar/>
+      <SocialLinks/>       
       <Hero/>
+      <Skills/>
+      <Education/> 
       <Projects />
-      <About/>
-      <Skills/>      
+      <Experience/>     
     </div>
     
 
