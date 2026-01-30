@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700i,900i';
+
+*{
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body{
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light mode */
+body {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+/* Dark mode */
+.dark body {
+    background-color: #0f172a;
+    color: #f1f5f9;
+}
+
+.wrap{
+  perspective-origin: 50% 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+#square{
+  position:absolute;
+  bottom: -50vh;
+  transform-style: preserve-3d;
+}
+
+$total: 10;
+@for $i from 1 through $total {
+  $scale:random(2) - .4;
+
+  #square:nth-child(#{$i}){
+    left:random(120) * 1% - 20;
+    animation: raise#{$i} 6 + random(15) +s linear infinite;
+    animation-delay:random(5) - 5 + s;
+    transform: scale(.3 * $i - .6) rotate(random(360) + deg);
+    z-index: 0;
+    filter: blur($i - 6 + px);
+
+    @keyframes raise#{$i} {
+      to{
+       bottom:150vh;
+       transform: scale(.3 * $i - .6) rotate(random(360) + deg);
+      }
+    }
+  }
+}
