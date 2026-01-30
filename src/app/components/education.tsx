@@ -6,7 +6,7 @@ export default function Education() {
       institution: 'University of Massachusetts Amherst',
       degree: 'B.S. in Computer Science',
       duration: 'Expected Graduation: June 2027',
-      details: 'Relevant Coursework: Programming I–III, Data Structures, Computer Organization & Assembly, Operating Systems & Security, Calculus I–II, Physics I–II, Intro to Generative AI',
+      details: 'Relevant Coursework: Programming I–III, Programming Methodology, Data Structures, Computer Organization & Assembly, Operating Systems & Security, Calculus I–III, Physics I–II, Intro to Generative AI',
     },
     {
       institution: 'Middlesex Community College',
