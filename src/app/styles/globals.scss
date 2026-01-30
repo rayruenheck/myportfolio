@@ -51,7 +51,7 @@ $total: 10;
 
   #square:nth-child(#{$i}){
     left:math.random(120) * 1% - 20;
-    animation: raise#{$i} 6 + math.random(15) +s linear infinite;
+    animation: raise#{$i} 6 + math.random(15) + s linear infinite;
     animation-delay:math.random(5) - 5 + s;
     transform: scale(.3 * $i - .6) rotate(math.random(360) + deg);
     z-index: 0;
