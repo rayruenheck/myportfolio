@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,20 +47,20 @@ body {
 
 $total: 10;
 @for $i from 1 through $total {
-  $scale:random(2) - .4;
+  $scale:math.random(2) - .4;
 
   #square:nth-child(#{$i}){
-    left:random(120) * 1% - 20;
-    animation: raise#{$i} 6 + random(15) +s linear infinite;
-    animation-delay:random(5) - 5 + s;
-    transform: scale(.3 * $i - .6) rotate(random(360) + deg);
+    left:math.random(120) * 1% - 20;
+    animation: raise#{$i} 6 + math.random(15) +s linear infinite;
+    animation-delay:math.random(5) - 5 + s;
+    transform: scale(.3 * $i - .6) rotate(math.random(360) + deg);
     z-index: 0;
     filter: blur($i - 6 + px);
 
     @keyframes raise#{$i} {
       to{
        bottom:150vh;
-       transform: scale(.3 * $i - .6) rotate(random(360) + deg);
+       transform: scale(.3 * $i - .6) rotate(math.random(360) + deg);
       }
     }
   }
