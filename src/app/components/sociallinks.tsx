@@ -3,7 +3,7 @@ export default function SocialLinks() {
       <div id="contact" className="py-20 px-6 bg-light-bg dark:bg-dark-bg">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-light-text dark:text-dark-text mb-4">
-            Let's Connect
+            Let&apos;s Connect
           </h2>
           <p className="text-lg text-light-subtext dark:text-dark-subtext mb-12">
             Find me on these platforms
