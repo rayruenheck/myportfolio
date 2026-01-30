@@ -35,11 +35,7 @@ export default function Skills() {
                     key={idx}
                     className="px-3 py-2 text-sm bg-primary-50 dark:bg-primary-900/20 text-light-text dark:text-dark-text rounded-lg border border-primary-200 dark:border-primary-800 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:scale-105 transition-all duration-200 cursor-default"
                   >
-                    {typeof item === 'string' ? item : (
-                      <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 dark:hover:text-primary-400">
-                        {item.name}
-                      </a>
-                    )}
+                    {item}
                   </span>
                 ))}
               </div>
