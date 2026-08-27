@@ -6,14 +6,10 @@ import Sidebar from './sidebar'
 export default function LayoutContent({ children }: { children: ReactNode }) {
   const [showSidebar, setShowSidebar] = useState(false)
   return (
-    <div className="min-h-screen">
-      <div className="flex">
-        <SideBarMobile setter={setShowSidebar} />
-        <Sidebar show={showSidebar} setter={setShowSidebar} />
-        <div className="flex flex-col flex-grow w-screen md:w-full min-h-screen">
-          {children}
-        </div>
-      </div>
+    <div className="flex min-h-screen">
+      <SideBarMobile setter={setShowSidebar} />
+      <Sidebar show={showSidebar} setter={setShowSidebar} />
+      <main className="min-w-0 flex-grow pt-[60px] md:pt-0">{children}</main>
     </div>
   )
 }

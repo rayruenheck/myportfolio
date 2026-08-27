@@ -1,63 +1,58 @@
-import React from 'react';
+import Section from './section'
+
+const educationHistory = [
+  {
+    institution: 'University of Massachusetts Amherst',
+    degree: 'B.S. in Computer Science',
+    duration: 'Expected June 2027',
+  },
+  {
+    institution: 'Middlesex Community College',
+    degree: 'A.S. in Computer Science',
+    duration: 'Jan 2026',
+  },
+]
+
+const coursework = [
+  'Operating Systems & Security',
+  'Data Structures',
+  'Computer Organization & Assembly',
+  'Reasoning Under Uncertainty',
+  'Intro to Generative AI',
+  'Computer Systems Principles',
+  'Web Programming',
+]
 
 export default function Education() {
-  const educationHistory = [
-    {
-      institution: 'University of Massachusetts Amherst',
-      degree: 'B.S. in Computer Science',
-      duration: 'Expected Graduation: June 2027',
-      details: 'Relevant Coursework: Programming I–III, Programming Methodology, Data Structures, Computer Organization & Assembly, Operating Systems & Security, Calculus I–III, Physics I–II, Intro to Generative AI',
-    },
-    {
-      institution: 'Middlesex Community College',
-      degree: 'A.S. in Computer Science',
-      duration: 'January 2026',
-    },
-  ];
-
   return (
-    <div id='education' className="min-h-screen py-20 px-6 bg-light-hover dark:bg-dark-card">
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-light-text dark:text-dark-text mb-4">
-            Education
-          </h2>
-          <p className="text-lg text-light-subtext dark:text-dark-subtext">
-            My academic background
-          </p>
-        </div>
-
-        <div className="space-y-6">
-          {educationHistory.map((edu, index) => (
-            <div
-              key={index}
-              className="bg-light-card dark:bg-dark-bg border border-light-border dark:border-dark-border rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              {/* Header */}
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-2">
-                  {edu.institution}
-                </h3>
-                <p className="text-xl text-light-text dark:text-dark-text font-medium mb-2">
-                  {edu.degree}
-                </p>
-                <p className="text-sm text-light-subtext dark:text-dark-subtext font-medium inline-block px-3 py-1 bg-primary-100 dark:bg-primary-900/30 rounded-full">
-                  {edu.duration}
-                </p>
-              </div>
-
-              {/* Details */}
-              {edu.details && (
-                <div className="mt-4 pt-4 border-t border-light-border dark:border-dark-border">
-                  <p className="text-light-subtext dark:text-dark-subtext leading-relaxed">
-                    {edu.details}
-                  </p>
-                </div>
-              )}
+    <Section id="education" label="03 / Education" title="Where I've studied" tinted>
+      <div className="divide-y divide-line border-y border-line">
+        {educationHistory.map((edu) => (
+          <div
+            key={edu.institution}
+            className="flex flex-col gap-1 py-6 md:flex-row md:items-baseline md:justify-between md:gap-8"
+          >
+            <div>
+              <h3 className="font-display text-xl font-semibold tracking-tight text-fg">
+                {edu.institution}
+              </h3>
+              <p className="mt-1 text-muted">{edu.degree}</p>
             </div>
-          ))}
-        </div>
+            <p className="flex-shrink-0 font-mono text-xs uppercase tracking-[0.15em] text-faint">
+              {edu.duration}
+            </p>
+          </div>
+        ))}
       </div>
-    </div>
-  );
+
+      <div className="mt-10">
+        <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-faint">
+          Relevant coursework
+        </h4>
+        <p className="mt-3 max-w-prose leading-relaxed text-muted">
+          {coursework.join(', ')}
+        </p>
+      </div>
+    </Section>
+  )
 }

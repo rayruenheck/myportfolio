@@ -1,106 +1,70 @@
 "use client"
 
-import { Dispatch, ReactNode, SetStateAction } from "react";
-import Link from "next/link";
-import { SlHome } from 'react-icons/sl'
-import { BsFileCode, BsBriefcase, BsBook, BsGear, BsEnvelopeAt } from 'react-icons/bs'
+import { Dispatch, SetStateAction } from 'react'
+import Link from 'next/link'
 import ThemeToggle from './ThemeToggle'
-import Image from 'next/image'
 
-interface menuItem{
-  icon : ReactNode
-  name : string
-  route: string
-}
 interface showState {
-  show : boolean
-  setter : Dispatch<SetStateAction<boolean>>
-    
-  
+  show: boolean
+  setter: Dispatch<SetStateAction<boolean>>
 }
-export default function Sidebar({ show, setter } : showState) {
 
-  const className = "w-[250px] transition-[margin-left] ease-in-out bg-white dark:bg-gray-900 md:bg-transparent duration-500 fixed md:static top-0 bottom-0 left-0 z-40";
+const menu = [
+  { name: 'Projects', route: '/#projects', index: '01' },
+  { name: 'Experience', route: '/#experience', index: '02' },
+  { name: 'Education', route: '/#education', index: '03' },
+  { name: 'Skills', route: '/#skills', index: '04' },
+  { name: 'Contact', route: '/#contact', index: '05' },
+]
 
-  const appendClass = show ? " ml-0" : " ml-[-250px] md:hidden";
+export default function Sidebar({ show, setter }: showState) {
+  const base =
+    'w-[250px] flex-shrink-0 transition-[margin-left] ease-in-out duration-500 fixed md:sticky top-0 bottom-0 md:h-screen left-0 z-40 bg-bg border-r border-line flex flex-col'
+  const appendClass = show ? ' ml-0' : ' ml-[-250px] md:ml-0 md:flex hidden'
 
-  const MenuItem = ({ icon, name, route } : menuItem) => {
-    
-      
-    
-      
-
-      return (
-          <Link
-              href={route}
-              onClick={() => {
-                  setter(oldVal => !oldVal);
-              }}
-             className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-white/10 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors`}
-          >
-             <div className="text-xl flex [&>*]:mx-auto w-[30px]">
-                {icon}
-             </div>
-             <div>{name}</div>
-          </Link>
-      )
-  }
-  const ModalOverlay = () => (
-    <div
-        className={`flex md:hidden bg-black/50 fixed top-0 right-0 bottom-0 left-0 z-30`}
-        onClick={() => {
-            setter(oldVal => !oldVal);
-        }}
-    />
-  )
-
-  
-  return (    
+  return (
     <>
-    <div className={`${className}${appendClass}`}>
-    <div className="p-2 flex">
-                    <Link href="/">
-                        <Image src="/images/Ray Ruenheck.png" alt="Ray Ruenheck" width={300} height={300} />
-                    </Link>
-                </div>
-        <div className="flex flex-col">
-            <MenuItem
-                name="Home"
-                route="/"
-                icon={<SlHome/>}
-            />
-            <MenuItem
-                name="Projects"
-                route="/projects"
-                icon={<BsFileCode/>}
-            />
-            <MenuItem
-                name="Experience"
-                route="/#experience"
-                icon={<BsBriefcase/>}
-            />
-            <MenuItem
-                name="Education"
-                route="/#education"
-                icon={<BsBook/>}
-            />
-            <MenuItem
-                name="Skills"
-                route="/#skills"
-                icon={<BsGear/>}
-            />
-            <MenuItem
-                name="Contact"
-                route="/#contact"
-                icon={<BsEnvelopeAt/>}
-            />
+      <div className={`${base}${appendClass}`}>
+        <div className="px-6 pt-8">
+          <Link
+            href="/"
+            onClick={() => setter(false)}
+            className="font-display text-lg font-semibold tracking-tight text-fg"
+          >
+            Ray Ruenheck
+          </Link>
+          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.15em] text-faint">
+            Software Engineer
+          </p>
         </div>
-        <div className="p-4 mt-auto">
+
+        <nav className="mt-10 flex flex-col px-3">
+          {menu.map((item) => (
+            <Link
+              key={item.name}
+              href={item.route}
+              onClick={() => setter(false)}
+              className="group flex items-baseline gap-3 rounded px-3 py-2.5 text-sm text-muted transition-colors hover:bg-surface hover:text-fg"
+            >
+              <span className="font-mono text-[11px] text-faint transition-colors group-hover:text-accent">
+                {item.index}
+              </span>
+              <span>{item.name}</span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className="mt-auto px-6 pb-8">
           <ThemeToggle />
         </div>
-    </div>
-    {show ? <ModalOverlay /> : <></>}
+      </div>
+
+      {show && (
+        <div
+          className="fixed inset-0 z-30 bg-black/40 md:hidden"
+          onClick={() => setter(false)}
+        />
+      )}
     </>
   )
 }
-

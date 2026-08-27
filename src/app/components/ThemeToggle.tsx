@@ -2,29 +2,29 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { HiMoon, HiSun } from 'react-icons/hi2'
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  // Render the frame before mount so the sidebar footer doesn't shift.
+  if (!mounted) {
+    return <div className="h-6" aria-hidden="true" />
+  }
+
+  const isDark = resolvedTheme === 'dark'
 
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 transition-colors hover:bg-gray-300 dark:hover:bg-gray-700"
-      aria-label="Toggle theme"
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className="font-mono text-[11px] uppercase tracking-[0.15em] text-faint transition-colors hover:text-accent"
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
     >
-      {theme === 'dark' ? (
-        <HiSun className="w-5 h-5 text-yellow-500" />
-      ) : (
-        <HiMoon className="w-5 h-5 text-indigo-600" />
-      )}
+      {isDark ? 'Light' : 'Dark'} mode
     </button>
   )
 }

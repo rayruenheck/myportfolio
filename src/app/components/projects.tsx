@@ -1,59 +1,34 @@
-import Image from 'next/image'
-import { projectProp } from './projectCard';
-import ProjectCard  from './projectCard';
+import Section from './section'
+import ProjectCard, { projectProp } from './projectCard'
+
+const projects: projectProp[] = [
+  {
+    title: 'Chess Analyzer',
+    kicker: 'Multi-Platform Game Analysis API',
+    tech: ['Python', 'FastAPI', 'SQLite', 'Stockfish', 'REST APIs', 'Anthropic API'],
+    desc: [
+      'Integrated four REST APIs behind one FastAPI service, normalizing Lichess and Chess.com game history into a single schema and throttling Lichess Opening Explorer calls to stay inside its rate limit',
+      'Designed a SQLite schema storing one row per ply across 2,946 moves, deriving centipawn loss from a join on before and after positions instead of duplicating it, and keying caches on normalized FEN so transposed positions hit',
+      'Ran Stockfish as a pool of single-threaded engines with the transposition table cleared per search, making analysis 3.9x faster than serial and cutting positions where the pool disagreed with serial from 9 of 44 to 0',
+      'Aggregated ply rows into blunder rates by game phase, clock remaining, and move type, each measured against its own base rate: captures read as a weakness at 21% of blunders until set against 24% of all moves',
+      "Defined the coaching output as a typed schema that puts each claim and its evidence ids before the prose, so recommendations are generated from engine-derived facts rather than the model's own chess knowledge",
+      'Wrote 182 tests that stub every platform, explorer, and model call and never launch an engine, so the suite runs offline against a temp database and cannot bill the model API',
+    ],
+    src: '/images/chess-analyzer-poster.jpg',
+    video: '/videos/chess-analyzer-preview.mp4',
+    videoLabel: 'chess-analyzer — localhost:8000',
+    link: 'https://github.com/rayruenheck/chess-analyzer',
+  },
+]
 
 export default function Projects() {
-  const projects: projectProp[] = [
-    {
-      title: 'TimeFinder – Personal Task & Calendar Scheduler',
-      tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Flask', 'MongoDB', 'NextAuth', 'AWS'],
-      desc: "Designed and implemented a scheduling algorithm that prioritizes tasks around daily peak-focus windows.\nIntegrated Google OAuth with NextAuth and synced user calendars via the Google Calendar API for real-time availability.\nBuilt a Flask backend with MongoDB for secure task storage, query patterns, and user-specific scheduling logic.\nDeployed the full-stack application using AWS EC2 with custom domain routing via Route 53.",
-      src: '/images/timefinder.png',
-      link: 'https://github.com/rayruenheck',
-    },
-    {
-      title: 'PantryPal – Pantry & Recipe Planner',
-      tech: ['Next.js', 'Tailwind CSS', 'Flask', 'Redis'],
-      desc: "Developed a full-stack meal-planning app with user authentication and personalized recipe management.\nImplemented Redis-backed sessions and caching to improve responsiveness for frequent recipe and pantry queries.\nBuilt RESTful Flask endpoints to generate grocery lists and fetch recipes via external APIs.\nDeployed backend on AWS EC2 with custom domain routing via Route 53.",
-      src: '/images/pantrypal.png',
-      link: 'https://github.com/rayruenheck',
-    },
-
-  ];
-
   return (
-    <div className='w-full min-h-screen py-20 px-6 bg-light-bg dark:bg-dark-bg'>
-      <div className='max-w-6xl mx-auto'>
-        <div className='mb-12 text-center'>
-          <h2 className="text-4xl md:text-5xl font-bold text-light-text dark:text-dark-text mb-4">
-            Featured Projects
-          </h2>
-          <p className="text-lg text-light-subtext dark:text-dark-subtext max-w-2xl mx-auto">
-            A showcase of my recent work in full-stack development
-          </p>
-        </div>
-
-        <div className='space-y-8'>
-          {projects.map((project, index)=>
-            <ProjectCard
-              link={project.link}
-              title={project.title}
-              desc={project.desc}
-              src={project.src}
-              tech={project.tech}
-              key={index}
-            />
-          )}
-        </div>
+    <Section id="projects" label="01 / Projects" title="What I've built" tinted>
+      <div className="space-y-24">
+        {projects.map((project) => (
+          <ProjectCard key={project.title} {...project} />
+        ))}
       </div>
-    </div>
-
-  );
-}   
-        
-      
-        
-        
-      
-
-   
+    </Section>
+  )
+}

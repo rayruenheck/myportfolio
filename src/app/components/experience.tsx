@@ -1,76 +1,116 @@
+import Section from './section'
+
+interface RoleProject {
+  name?: string
+  tech?: string
+  details: string[]
+}
+
+interface ExperienceEntry {
+  role: string
+  company: string
+  duration: string
+  projects: RoleProject[]
+}
+
+const experiences: ExperienceEntry[] = [
+  {
+    role: 'R&D Intern',
+    company: 'Regional Economic Models, Inc. (REMI)',
+    duration: 'Jan 2026 — Present',
+    projects: [
+      {
+        name: 'MTD — HubSpot Sync Service',
+        tech: 'Python · Flask · SQL Server',
+        details: [
+          'Built and deployed a Flask service that syncs a legacy SQL Server CRM into HubSpot, keeping 2,800+ companies, contacts, and deals current on a 15-minute poll driven by per-table rowversion high-water marks',
+          'Made recovery from lost state safe by matching existing HubSpot records on normalized name or phone and keeping the lowest record ID, so re-runs converge instead of creating duplicates',
+          'Wrote 57 tests covering pure transforms, Flask routes, live SQL Server, and live HubSpot calls, including checks that remote record counts match local sync state',
+          'Built an association auditor, a dry-run reconciler, and an orphan archiver to move the integration from per-purchase to per-client deals and repair drift in place',
+        ],
+      },
+      {
+        name: 'Proseris Platform',
+        tech: 'React 19 · TypeScript · Django REST Framework',
+        details: [
+          "Shipped 36 merged pull requests across the frontend and backend and wrote 10 test files that hold 304 of the repo's 2,048 test cases",
+          'Designed a Django REST app that saves tables, charts, and dashboard layouts as three UUID-keyed models with per-user CRUD, then wrote the typed API client and React Query hooks that consume it',
+          'Traced a bug where a third-party grid stripped minus signs in two separate code paths, then replaced the cell with a drop-in component now used in 5 modules and covered by 98 new tests',
+          'Built a Highcharts dashboard with stacked and treemap charts, year-range animation, and Excel and PDF export, then moved the render lifecycle into a hook and cut a 3,142-line component by about 690 lines',
+        ],
+      },
+    ],
+  },
+  {
+    role: 'Supplemental Instruction (SI) Leader & CS Tutor',
+    company: 'Middlesex Community College',
+    duration: 'Jan 2025 — Dec 2025',
+    projects: [
+      {
+        details: [
+          'Led weekly SI sessions for 3–5 students, covering fundamental C++ concepts through live-coding, guided practice, and problem sets',
+          'Provided one-on-one tutoring for Programming I–III, creating study guides and example programs reinforcing OOP, introductory data structures, and debugging strategies',
+        ],
+      },
+    ],
+  },
+]
+
 export default function Experience() {
-    const experiences = [
-      {
-        role: "R&D Intern",
-        company: "Regional Economic Models Inc",
-        duration: "January 2026 - Present",
-        details: [
-          "Designed customer account settings UI and interaction flows in Figma, then implemented the frontend in React, enabling end-to-end ownership of user-facing features",
-          "Developed 5+ REST API endpoints in Django to support account and organization management workflows",
-          "Built admin interfaces using Django Admin for managing customer accounts, organizations, and access codes",
-          "Conducted QA testing on account management flows using Swagger UI, identifying and documenting 10+ reproducible bugs to improve release quality",
-          "Evaluated Redis as a caching layer to improve performance in admin workflows",
-          "Contributed to team codebase through Git-based workflows, including feature branches, pull requests, and code reviews"
-        ],
-      },
-      {
-        role: "Supplemental Instruction (SI) Leader & CS Tutor",
-        company: "Middlesex Community College",
-        duration: "January 2025 - December 2025",
-        details: [
-          "Led weekly SI sessions for 3–5 students, covering fundamental C++ concepts through live-coding, guided practice, and problem sets",
-          "Created study guides and example programs reinforcing OOP, introductory data structures, and debugging strategies",
-          "Provided one-on-one tutoring for Programming I–III, helping students with assignment planning, code quality, and conceptual understanding"
-        ],
-      },
-    ];
-  
-    return (
-      <div id="employment" className="min-h-screen py-20 px-6 bg-light-hover dark:bg-dark-card">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-12 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-light-text dark:text-dark-text mb-4">
-              Experience
-            </h2>
-            <p className="text-lg text-light-subtext dark:text-dark-subtext">
-              My professional journey
-            </p>
-          </div>
+  return (
+    <Section id="experience" label="02 / Experience" title="Where I've worked">
+      <div className="space-y-16">
+        {experiences.map((exp) => (
+          <article
+            key={`${exp.company}-${exp.role}`}
+            className="relative border-l border-line pl-6 md:pl-10"
+          >
+            {/* Timeline node */}
+            <span
+              className="absolute -left-[4.5px] top-2 h-2 w-2 rounded-full bg-accent"
+              aria-hidden="true"
+            />
 
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className="bg-light-card dark:bg-dark-bg border border-light-border dark:border-dark-border rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                {/* Header */}
-                <div className="mb-4 pb-4 border-b border-light-border dark:border-dark-border">
-                  <h3 className="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-2">
-                    {exp.role}
-                  </h3>
-                  <p className="text-xl text-light-text dark:text-dark-text font-medium mb-2">
-                    {exp.company}
-                  </p>
-                  <p className="text-sm text-light-subtext dark:text-dark-subtext font-medium inline-block px-3 py-1 bg-primary-100 dark:bg-primary-900/30 rounded-full">
-                    {exp.duration}
-                  </p>
+            <header className="mb-8">
+              <p className="font-mono text-xs uppercase tracking-[0.15em] text-faint">
+                {exp.duration}
+              </p>
+              <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight text-fg">
+                {exp.role}
+              </h3>
+              <p className="mt-1 text-muted">{exp.company}</p>
+            </header>
+
+            <div className="space-y-8">
+              {exp.projects.map((project, pIdx) => (
+                <div key={project.name ?? pIdx}>
+                  {project.name && (
+                    <div className="mb-3">
+                      <h4 className="font-medium text-fg">{project.name}</h4>
+                      {project.tech && (
+                        <p className="mt-1 font-mono text-xs text-faint">
+                          {project.tech}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  <ul className="max-w-prose space-y-3">
+                    {project.details.map((detail, idx) => (
+                      <li
+                        key={idx}
+                        className="relative pl-5 leading-relaxed text-muted before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-line"
+                      >
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-
-                {/* Details */}
-                <ul className="space-y-3">
-                  {exp.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-light-subtext dark:text-dark-subtext">
-                      <svg className="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span className="leading-relaxed">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
-    );
-  }
+    </Section>
+  )
+}

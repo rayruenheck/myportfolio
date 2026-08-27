@@ -1,29 +1,24 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { FiMenu as Icon } from 'react-icons/fi'
+
 interface setter {
-    setter : Dispatch<SetStateAction<boolean>>
+  setter: Dispatch<SetStateAction<boolean>>
 }
-export default function SideBarMobile({ setter } : setter) {
-    return (
-        <nav className="md:hidden fixed z-20 top-0 left-0 right-0 h-[60px] flex [&>*]:my-auto px-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-            <button
-                className="text-4xl flex text-black dark:text-white"
-                onClick={() => {
-                    setter(oldVal => !oldVal);
-                }}
-            >
-                <Icon />
-            </button>
-            <Link href="/" className="mx-auto">
-                <Image
-                    src="/images/Ray Ruenheck.png"
-                    alt="Ray Ruenheck"
-                    width={200}
-                    height={200}
-                />
-            </Link>
-        </nav>
-    )
+
+export default function SideBarMobile({ setter }: setter) {
+  return (
+    <nav className="fixed left-0 right-0 top-0 z-20 flex h-[60px] items-center gap-4 border-b border-line bg-bg px-4 md:hidden">
+      <button
+        className="flex text-2xl text-fg"
+        onClick={() => setter((oldVal) => !oldVal)}
+        aria-label="Open navigation"
+      >
+        <Icon />
+      </button>
+      <Link href="/" className="font-display text-base font-semibold tracking-tight text-fg">
+        Ray Ruenheck
+      </Link>
+    </nav>
+  )
 }
